@@ -6,4 +6,4 @@ variable "oci_region" {}
 variable "oci_compartment" {}
 variable "private_key_file" {}
 variable "public_key" {}
-#variable "home_region" {}
+
