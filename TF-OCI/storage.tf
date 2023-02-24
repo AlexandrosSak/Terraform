@@ -1,7 +1,7 @@
 #####Create a block volume in OCI:
 resource "oci_core_volume" "example_block_volume" {
   availability_domain = "sgAm:EU-FRANKFURT-1-AD-1"
-  compartment_id      = "ocid1.compartment.oc1..aaaaaaaaqrgldxcnc466mrneqbilp2fd4oxjsehq7ht7jeiqclws55aodwna"
+  compartment_id      = var.oci_compartment
   display_name        = "example_block_volume"
   size_in_gbs         = "50"
 }
@@ -9,14 +9,14 @@ resource "oci_core_volume" "example_block_volume" {
 ####### Create an NFS file system :
 resource "oci_file_storage_file_system" "example_file_system" {
   availability_domain = "sgAm:EU-FRANKFURT-1-AD-1"
-  compartment_id      = "ocid1.compartment.oc1..aaaaaaaaqrgldxcnc466mrneqbilp2fd4oxjsehq7ht7jeiqclws55aodwna"
+  compartment_id      = var.oci_compartment
   display_name        = "example_file_system"
 }
 ####===================Mount Target=======================================
 resource "oci_file_storage_mount_target" "my_mount_target_1" {
     #Required
     availability_domain = "sgAm:EU-FRANKFURT-1-AD-1"
-    compartment_id = "ocid1.compartment.oc1..aaaaaaaaqrgldxcnc466mrneqbilp2fd4oxjsehq7ht7jeiqclws55aodwna"
+    compartment_id = var.oci_compartment
     subnet_id = oci_core_subnet.my_subnet_01.id
     display_name = "my-mount-target-1"
     ip_address = "10.0.120.210"
@@ -37,7 +37,6 @@ resource "oci_file_storage_export" "example_export" {
   path            = "/example_path"
 }
 resource "oci_core_volume_attachment" "example_attachment" {
- # availability_domain = "sgAm:EU-FRANKFURT-1-AD-1"
   instance_id         = "${oci_core_instance.TEST-Comp-Inst_01.id}"
   volume_id           = "${oci_core_volume.example_block_volume.id}"
   attachment_type     = "paravirtualized"
@@ -47,7 +46,7 @@ resource "oci_core_volume_attachment" "example_attachment" {
 ######## Mount the NFS file system on the instance===============================================
 
 output "nfs_priv_ip" {
-  value = oci_file_storage_mount_target.my_mount_target_1.ip_address #oci_file_storage_mount_target.my_mount_target_1.private_ip_ids[0]
+  value = oci_file_storage_mount_target.my_mount_target_1.ip_address 
 }
 
 

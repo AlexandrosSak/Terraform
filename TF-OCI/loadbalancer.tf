@@ -1,5 +1,5 @@
 resource "oci_load_balancer" "my_lb" {
-compartment_id = "ocid1.compartment.oc1..aaaaaaaaqrgldxcnc466mrneqbilp2fd4oxjsehq7ht7jeiqclws55aodwna"
+compartment_id = var.oci_compartment
 subnet_ids = [oci_core_subnet.my_subnet_01.id , oci_core_subnet.my_subnet_02.id ]
 shape = "flexible"
 shape_details {
