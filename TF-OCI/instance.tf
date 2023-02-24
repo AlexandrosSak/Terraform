@@ -1,8 +1,7 @@
 resource "oci_core_instance" "TEST-Comp-Inst_01" {
     availability_domain = "sgAm:EU-FRANKFURT-1-AD-1"
     compartment_id = var.oci_compartment
-    shape = "VM.Standard.E2.4"      #"VM.Standard2.1"  #"VM.Standard.E2.2"
-    #key_pair = oci_core_ssh_key.example_key_pair.private_key_openssh
+    shape = "VM.Standard.E2.4"
     source_details {
         source_id = "ocid1.image.oc1.eu-frankfurt-1.aaaaaaaa47555lp4mjbiuf64doxtnbimrwk57m4sfgu3gonaf5i2cteil5iq"
         source_type = "image"
@@ -30,7 +29,7 @@ output "public_ip" {
 resource "oci_core_instance" "TEST-Comp-Inst_2" {
     availability_domain = "sgAm:EU-FRANKFURT-1-AD-2"
     compartment_id = var.oci_compartment
-    shape = "VM.Standard2.1"          #"VM.Standard.E2.2"
+    shape = "VM.Standard2.1"     
     source_details {
         source_id = "ocid1.image.oc1.eu-frankfurt-1.aaaaaaaa47555lp4mjbiuf64doxtnbimrwk57m4sfgu3gonaf5i2cteil5iq"
         source_type = "image"
