@@ -1,6 +1,6 @@
 resource "oci_core_instance" "TEST-Comp-Inst_01" {
     availability_domain = "sgAm:EU-FRANKFURT-1-AD-1"
-    compartment_id = "ocid1.compartment.oc1..aaaaaaaaqrgldxcnc466mrneqbilp2fd4oxjsehq7ht7jeiqclws55aodwna"
+    compartment_id = var.oci_compartment
     shape = "VM.Standard.E2.4"      #"VM.Standard2.1"  #"VM.Standard.E2.2"
     #key_pair = oci_core_ssh_key.example_key_pair.private_key_openssh
     source_details {
@@ -12,8 +12,8 @@ resource "oci_core_instance" "TEST-Comp-Inst_01" {
     create_vnic_details {
         assign_public_ip = true
 
-        subnet_id = oci_core_subnet.my_subnet_01.id # "ocid1.subnet.oc1.eu-frankfurt-1.aaaaaaaaoh6ba46c2mwyd76t2aj4tbwrayd3x4lo4xhw5acudacnuie5jevq"
- } 
+        subnet_id = oci_core_subnet.my_subnet_01.id
+        
     metadata = {
       user_data = base64encode(var.user-data)
       ssh_authorized_keys = var.public_key
@@ -29,7 +29,7 @@ output "public_ip" {
 
 resource "oci_core_instance" "TEST-Comp-Inst_2" {
     availability_domain = "sgAm:EU-FRANKFURT-1-AD-2"
-    compartment_id ="ocid1.compartment.oc1..aaaaaaaaqrgldxcnc466mrneqbilp2fd4oxjsehq7ht7jeiqclws55aodwna"
+    compartment_id = var.oci_compartment
     shape = "VM.Standard2.1"          #"VM.Standard.E2.2"
     source_details {
         source_id = "ocid1.image.oc1.eu-frankfurt-1.aaaaaaaa47555lp4mjbiuf64doxtnbimrwk57m4sfgu3gonaf5i2cteil5iq"
@@ -39,7 +39,7 @@ resource "oci_core_instance" "TEST-Comp-Inst_2" {
     display_name = "my-terraform-vm_2"
     create_vnic_details {
         assign_public_ip = true
-        subnet_id = oci_core_subnet.my_subnet_02.id  # "ocid1.subnet.oc1.eu-frankfurt-1.aaaaaaaaoh6ba46c2mwyd76t2aj4tbwrayd3x4lo4xhw5acudacnuie5jevq"
+        subnet_id = oci_core_subnet.my_subnet_02.id 
   }
     metadata = {
       user_data = base64encode(var.user-data)
