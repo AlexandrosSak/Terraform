@@ -10,7 +10,7 @@ resource "oci_core_vcn" "my_vcn" {
   cidr_block = "10.0.0.0/16"
   display_name = "my_vcn"
   dns_label = "examplevcn"
-  compartment_id = "ocid1.compartment.oc1..aaaaaaaaqrgldxcnc466mrneqbilp2fd4oxjsehq7ht7jeiqclws55aodwna"
+  compartment_id = var.oci_compartment
 }
 resource "oci_core_security_list" "terraformsecuritylist" {
   display_name   = "terraformsecuritylist"
@@ -89,7 +89,7 @@ ingress_security_rules {
 }
 
 resource "oci_core_internet_gateway" "terraforminternetgateway1" {
-  compartment_id = "ocid1.compartment.oc1..aaaaaaaaqrgldxcnc466mrneqbilp2fd4oxjsehq7ht7jeiqclws55aodwna"
+  compartment_id = var.oci_compartment
   display_name   = "terraforminternetgateway1"
   vcn_id         = oci_core_vcn.my_vcn.id
 }
@@ -110,7 +110,7 @@ resource "oci_core_subnet" "my_subnet_01" {
   cidr_block      = "10.0.0.0/17"
   display_name    = "my_subnet_01"
   vcn_id          = oci_core_vcn.my_vcn.id
-  compartment_id  = "ocid1.compartment.oc1..aaaaaaaaqrgldxcnc466mrneqbilp2fd4oxjsehq7ht7jeiqclws55aodwna"
+  compartment_id  = var.oci_compartment
   security_list_ids   = [oci_core_security_list.terraformsecuritylist.id]
   route_table_id      = oci_core_vcn.my_vcn.default_route_table_id
   dhcp_options_id     = oci_core_vcn.my_vcn.default_dhcp_options_id
@@ -121,7 +121,7 @@ resource "oci_core_subnet" "my_subnet_02" {
   cidr_block      = "10.0.128.0/17"
   display_name    = "my_subnet_02"
   vcn_id          = oci_core_vcn.my_vcn.id
-  compartment_id  = "ocid1.compartment.oc1..aaaaaaaaqrgldxcnc466mrneqbilp2fd4oxjsehq7ht7jeiqclws55aodwna"
+  compartment_id  = var.oci_compartment
   security_list_ids   = [oci_core_security_list.terraformsecuritylist.id]
   route_table_id      = oci_core_vcn.my_vcn.default_route_table_id
   dhcp_options_id     = oci_core_vcn.my_vcn.default_dhcp_options_id
