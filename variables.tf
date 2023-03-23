@@ -43,7 +43,7 @@ default = 3600
 }
 
 variable "session_key_details_public_key_content" {
-default = "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQCyyaoTwIoO6oIPWcVaL0WcCoiPPCqTFimiGEZiLWTY/wfHKhCgwB19qnMC0tDiYiFnn0BnQlvhQTlg6D4j+kxG8Kwvg8WZ78OcyNQ56ML75wI5EOXivzTuIPEaVY47yMIPHvb4FOHZT+1am9s//aI7gZwjdpLFAPLnoxa7znsv1gysmgimx4yF6QUE9FfaFH+q51Q5xA3k/DWvIGww7nroOs+3K/qTMFmOFaPxgbI4wp+mRgmHzeuJrTh629IOOTzFfLc8oD9Mo+nhMBFqnC4RqyAcra1RrfxE7UwmonA5HWKwQwekPEtItLenhEbEU54odZ2lI/wSyaQAVNqsDYBnKU1j+7AbkXik1qjH+GoDkSFgLZLd09QdD19uGvOs1bH5/2OE2uLBulTfIMuzfx1B05kRxL1o/Vb7S/0oeMdwRj200Pgd+aR6aMzIQ0fG8WrerdP+pI1mZWv/fi6w551WkFsAWHMiH9UtLoYe9vH68dI3FF01bH+l51irjKV20ZM= opc@test-instance-20230117-1615"
+default = "ssh-rsa ......"
 }
 
 variable "display_name" {
