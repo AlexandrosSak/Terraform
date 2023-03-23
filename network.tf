@@ -78,6 +78,7 @@ route_rules {
    network_entity_id = oci_core_nat_gateway.nat_gateway.id
 }
 }
+#Private Subnet
 resource "oci_core_subnet" "Bastion_subnet" {
   count                      = 2
   availability_domain        = null #"sgAm:EU-FRANKFURT-1-AD-1"  # "sgAm:EU-FRANKFURT-1-AD-${count.index + 1}"
