@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 variable "oci_tenancy" {}
+=======
+variable "oci_tenancy" {} 
+>>>>>>> d851fa01c3dbc97efcf807418c3a7ec0228e0ae6
 variable "oci_user" {}
 variable "oci_fingerprint" {}
 variable "oci_key" {}
@@ -7,7 +11,11 @@ variable "oci_compartment" {}
 variable "private_key_file" {}
 variable "public_key" {}
 variable "bastion_name" {
+<<<<<<< HEAD
   default = "Bastion"
+=======
+ default = "Bastion"
+>>>>>>> d851fa01c3dbc97efcf807418c3a7ec0228e0ae6
 }
 variable "bastion_defined_tags_value" {
   default = "value"
@@ -33,6 +41,7 @@ variable "session_target_resource_details_target_resource_port" {
   default = 22
 }
 variable "session_target_resource_details_session_type_managed_ssh" {
+<<<<<<< HEAD
   default = "MANAGED_SSH"
 }
 variable "session_display_name" {
@@ -49,4 +58,21 @@ variable "session_key_details_public_key_content" {
 variable "display_name" {
   default = "Private-Instance"
   type    = string
+=======
+default = "MANAGED_SSH"
+}
+variable "session_display_name" {
+default = "bastionSessionExample"
+}
+variable "session_session_ttl_in_seconds" {
+default = 3600
+}
+
+variable "session_key_details_public_key_content" {
+default = "ssh-rsa ****************"
+}
+variable "display_name" {
+  default = "TEST_Instance"
+  type = string
+>>>>>>> d851fa01c3dbc97efcf807418c3a7ec0228e0ae6
 }

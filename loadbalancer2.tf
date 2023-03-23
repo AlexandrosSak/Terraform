@@ -2,6 +2,7 @@
 resource "oci_load_balancer_load_balancer" "private_lb" {
   compartment_id = var.oci_compartment
   display_name   = "private_lb"
+<<<<<<< HEAD
   shape          = "flexible"
   shape_details {
     minimum_bandwidth_in_mbps = 10
@@ -9,10 +10,20 @@ resource "oci_load_balancer_load_balancer" "private_lb" {
   }
   subnet_ids = [oci_core_subnet.Bastion_subnet[0].id]
   is_private = true
+=======
+  shape = "flexible"
+  shape_details {
+  minimum_bandwidth_in_mbps = 10
+  maximum_bandwidth_in_mbps = 100
+}
+  subnet_ids     = [oci_core_subnet.Bastion_subnet[0].id]
+  is_private     = true
+>>>>>>> d851fa01c3dbc97efcf807418c3a7ec0228e0ae6
 
 }
 # Private Load Balancer Listener
 resource "oci_load_balancer_listener" "private_lb_listener" {
+<<<<<<< HEAD
   name                     = "private_lb_listener"
   default_backend_set_name = oci_load_balancer_backend_set.private_lb_backend.name
   protocol                 = "TCP"
@@ -37,6 +48,32 @@ resource "oci_load_balancer_backend_set" "private_lb_backend" {
     url_path = "/"
     port     = 80
   }
+=======
+  name              = "private_lb_listener"
+  default_backend_set_name =  oci_load_balancer_backend_set.private_lb_backend.name
+  protocol          = "TCP"
+  port              = 80  
+  load_balancer_id  = oci_load_balancer_load_balancer.private_lb.id
+}
+# Backend resources for private instances
+resource "oci_load_balancer_backend" "private_lb_backend_instance" {
+  count              = 2  
+  ip_address         = oci_core_instance.TEST-Comp-Inst[count.index].private_ip
+  load_balancer_id   = oci_load_balancer_load_balancer.private_lb.id
+  port               = 80 
+  backendset_name    = oci_load_balancer_backend_set.private_lb_backend.name 
+}
+# Backend set for private load balancer
+resource "oci_load_balancer_backend_set" "private_lb_backend" {
+  load_balancer_id  = oci_load_balancer_load_balancer.private_lb.id
+  name              = "private_lb_backend"
+  policy            = "ROUND_ROBIN"
+  health_checker {
+           protocol = "HTTP"
+           url_path = "/"
+               port = 80
+}
+>>>>>>> d851fa01c3dbc97efcf807418c3a7ec0228e0ae6
 }
 #data "oci_core_private_ip" "LB_private_ip" {
 #  private_ip_id = oci_load_balancer_load_balancer.private_lb.ip_address
