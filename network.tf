@@ -78,20 +78,18 @@ route_rules {
    network_entity_id = oci_core_nat_gateway.nat_gateway.id
 }
 }
-#Private subnet
 resource "oci_core_subnet" "Bastion_subnet" {
-  count               = 2
-  availability_domain   = "sgAm:EU-FRANKFURT-1-AD-${count.index + 1}"
-  cidr_block            = count.index == 0 ? "10.0.0.0/18" : "10.0.64.0/18"
-  display_name          = "Bastion_0${count.index + 1}"
-  vcn_id              = oci_core_vcn.my_vcn.id
-  compartment_id      = var.oci_compartment
+  count                      = 2
+  availability_domain        = null #"sgAm:EU-FRANKFURT-1-AD-1"  # "sgAm:EU-FRANKFURT-1-AD-${count.index + 1}"
+  cidr_block                 = count.index == 0 ? "10.0.0.0/18" : "10.0.64.0/18"
+  display_name               = "Private_subnet_0${count.index + 1}"
+  vcn_id                     = oci_core_vcn.my_vcn.id
+  compartment_id             = var.oci_compartment
   prohibit_public_ip_on_vnic = true
-  security_list_ids   = [oci_core_security_list.terraformsecuritylist.id]
-  route_table_id      = oci_core_vcn.my_vcn.default_route_table_id
-  dhcp_options_id     = oci_core_vcn.my_vcn.default_dhcp_options_id
+  security_list_ids          = [oci_core_security_list.terraformsecuritylist.id]
+  route_table_id             = oci_core_vcn.my_vcn.default_route_table_id
+  dhcp_options_id            = oci_core_vcn.my_vcn.default_dhcp_options_id
 }
-
 
 #public subnet for public lb
 resource "oci_core_subnet" "Public_subnet" {
