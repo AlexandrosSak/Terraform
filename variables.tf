@@ -46,6 +46,6 @@ variable "session_key_details_public_key_content" {
 default = "ssh-rsa ****************"
 }
 variable "display_name" {
-  default = "TEST_Instance"
+  default = "Private_Instance"
   type = string
 }
