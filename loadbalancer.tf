@@ -1,14 +1,14 @@
 # Create a private load balancer
 resource "oci_load_balancer_load_balancer" "private_lb" {
-  compartment_id = var.oci_compartment
-  display_name   = "private_lb"
-  shape = "flexible"
+  compartment_id            = var.oci_compartment
+  display_name              = "private_lb"
+  shape                     = "flexible"
   shape_details {
   minimum_bandwidth_in_mbps = 10
   maximum_bandwidth_in_mbps = 100
 }
-  subnet_ids     = [oci_core_subnet.Bastion_subnet[0].id]
-  is_private     = true
+  subnet_ids                = [oci_core_subnet.Bastion_subnet[0].id]
+  is_private                = true
 
 }
 # Private Load Balancer Listener
